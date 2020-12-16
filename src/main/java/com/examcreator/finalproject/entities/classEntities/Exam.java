@@ -28,7 +28,7 @@ public class Exam {
     private LocalTime endTime;
 
     @ManyToOne
-    @JoinColumn(foreignKey = "fk_course")
+    @JoinColumn(name = "fk_course")
     private Course course;
 
     public Long getId() {
