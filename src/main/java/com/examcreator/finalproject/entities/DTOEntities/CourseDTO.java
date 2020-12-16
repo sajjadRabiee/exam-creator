@@ -21,8 +21,8 @@ public class CourseDTO {
     public CourseDTO(Course course) {
         this.id = course.getId();
         this.title = course.getTitle();
-        this.startDay = course.getStartDay();
-        this.endDay = course.getEndDay();
+        this.startDay = course.getStartDay().toString();
+        this.endDay = course.getEndDay().toString();
         if(course.getTeacher() != null){
             this.teacherName = course.getTeacher().getUsername();
         }else{

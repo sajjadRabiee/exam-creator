@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class Course {
     private String photo;
 
     @Column
-    private String startDay;
+    private LocalDate startDay;
 
     @Column
-    private String endDay;
+    private LocalDate endDay;
 
     @ManyToOne
     @JoinColumn(name = "fk_teacher")
@@ -71,19 +72,19 @@ public class Course {
         this.title = title;
     }
 
-    public String getStartDay() {
+    public LocalDate getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(String startDay) {
+    public void setStartDay(LocalDate startDay) {
         this.startDay = startDay;
     }
 
-    public String getEndDay() {
+    public LocalDate getEndDay() {
         return endDay;
     }
 
-    public void setEndDay(String endDay) {
+    public void setEndDay(LocalDate endDay) {
         this.endDay = endDay;
     }
 
