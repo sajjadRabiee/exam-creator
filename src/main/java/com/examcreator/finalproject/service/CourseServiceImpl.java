@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,8 +38,8 @@ public class CourseServiceImpl extends BaseEntityServiceImpl<Course,Long, Course
 
         Course course = context.getBean(Course.class);
         course.setTitle(title);
-        course.setStartDay(startDay);
-        course.setEndDay(endDay);
+        course.setStartDay(LocalDate.parse(startDay));
+        course.setEndDay(LocalDate.parse(endDay));
 
         Course save = courseRepository.save(course);
         return save != null;
