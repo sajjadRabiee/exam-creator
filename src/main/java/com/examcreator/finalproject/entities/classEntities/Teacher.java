@@ -18,10 +18,10 @@ public class Teacher extends User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(mappedBy = "cTeacher")
+    @OneToMany(mappedBy = "teacher")
     private List<Course> courseList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "qTeacher")
+    @OneToMany(mappedBy = "teacher")
     private List<Question> questionList = new ArrayList<>();
 
     @PreRemove

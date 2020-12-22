@@ -34,7 +34,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "fk_teacher")
-    private Teacher qTeacher;
+    private Teacher teacher;
 
 
     public Long getId() {
@@ -85,11 +85,11 @@ public class Question {
         this.exam = exam;
     }
 
-    public Teacher getqTeacher() {
-        return qTeacher;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public void setqTeacher(Teacher qTeacher) {
-        this.qTeacher = qTeacher;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
