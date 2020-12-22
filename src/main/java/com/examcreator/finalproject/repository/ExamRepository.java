@@ -1,7 +1,7 @@
 package com.examcreator.finalproject.repository;
 
-import com.examcreator.finalproject.entities.classEntities.Course;
-import com.examcreator.finalproject.entities.classEntities.Exam;
+import com.examcreator.finalproject.entities.classEntities.OtherObjects.Course;
+import com.examcreator.finalproject.entities.classEntities.OtherObjects.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

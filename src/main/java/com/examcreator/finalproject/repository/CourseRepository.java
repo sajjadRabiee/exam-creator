@@ -1,8 +1,8 @@
 package com.examcreator.finalproject.repository;
 
-import com.examcreator.finalproject.entities.classEntities.Course;
-import com.examcreator.finalproject.entities.classEntities.Student;
-import com.examcreator.finalproject.entities.classEntities.Teacher;
+import com.examcreator.finalproject.entities.classEntities.OtherObjects.Course;
+import com.examcreator.finalproject.entities.classEntities.Users.Student;
+import com.examcreator.finalproject.entities.classEntities.Users.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

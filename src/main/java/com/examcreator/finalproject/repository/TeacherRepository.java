@@ -1,7 +1,6 @@
 package com.examcreator.finalproject.repository;
 
-import com.examcreator.finalproject.entities.classEntities.Teacher;
-import org.springframework.data.domain.Example;
+import com.examcreator.finalproject.entities.classEntities.Users.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
