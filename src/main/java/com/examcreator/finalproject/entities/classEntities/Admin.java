@@ -1,5 +1,6 @@
 package com.examcreator.finalproject.entities.classEntities;
 
+import com.examcreator.finalproject.entities.enumEntities.Role;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;

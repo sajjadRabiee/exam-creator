@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Scope("prototype")
@@ -19,6 +21,12 @@ public class Exam {
     private String title;
 
     @Column
+    private String description;
+
+    @Column
+    private Long totalScore;
+
+    @Column
     private LocalDate date;
 
     @Column
@@ -30,6 +38,10 @@ public class Exam {
     @ManyToOne
     @JoinColumn(name = "fk_course")
     private Course course;
+
+    @OneToMany(mappedBy = "exam")
+    private List<Question> questionList = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -45,6 +57,22 @@ public class Exam {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Long totalScore) {
+        this.totalScore = totalScore;
     }
 
     public LocalDate getDate() {
@@ -77,5 +105,13 @@ public class Exam {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
     }
 }

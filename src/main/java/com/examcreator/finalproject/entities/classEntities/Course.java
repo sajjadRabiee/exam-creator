@@ -30,7 +30,7 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "fk_teacher")
-    private Teacher teacher;
+    private Teacher cTeacher;
 
     @ManyToMany
     @JoinTable(
@@ -48,12 +48,12 @@ public class Course {
         return id;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public Teacher getCTeacher() {
+        return cTeacher;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setCTeacher(Teacher teacher) {
+        this.cTeacher = teacher;
     }
 
     public List<Student> getStudentList() {
