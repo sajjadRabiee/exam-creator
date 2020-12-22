@@ -1,9 +1,8 @@
 package com.examcreator.finalproject.security;
 
-import com.examcreator.finalproject.entities.classEntities.User;
+import com.examcreator.finalproject.entities.classEntities.Users.User;
 import com.examcreator.finalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
