@@ -1,6 +1,6 @@
 package com.examcreator.finalproject.entities.DTOEntities;
 
-import com.examcreator.finalproject.entities.classEntities.Exam;
+import com.examcreator.finalproject.entities.classEntities.OtherObjects.Exam;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class ExamDTO {
     private String title;
+    private String description;
     private String date;
     private String startTime;
     private String endTime;
@@ -18,6 +19,7 @@ public class ExamDTO {
 
     public ExamDTO(Exam exam) {
         this.title = exam.getTitle();
+        this.description = exam.getDescription();
         this.date = exam.getDate().toString();
         this.startTime = exam.getStartTime().toString();
         this.endTime = exam.getEndTime().toString();
@@ -29,6 +31,14 @@ public class ExamDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDate() {

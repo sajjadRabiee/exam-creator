@@ -1,6 +1,6 @@
 package com.examcreator.finalproject.entities.DTOEntities;
 
-import com.examcreator.finalproject.entities.classEntities.User;
+import com.examcreator.finalproject.entities.classEntities.Users.User;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
