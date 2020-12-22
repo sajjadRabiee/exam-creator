@@ -1,4 +1,4 @@
-package com.examcreator.finalproject.entities.classEntities;
+package com.examcreator.finalproject.entities.enumEntities;
 
 
 public enum Role {
