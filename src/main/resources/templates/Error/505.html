@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+          integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>505 - خطای سرور</title>
+</head>
+<body>
+<div sec:authorize="isAnonymous()">
+    <div th:replace="BaseTemplate/public-header.html :: public-navbar"></div>
+</div>
+<div th:if="${#httpServletRequest.isUserInRole('ADMIN')}" >
+    <div th:replace="BaseTemplate/admin-header.html :: admin-navbar"></div>
+</div>
+<div th:if="${#httpServletRequest.isUserInRole('TEACHER')}" >
+    <div th:replace="BaseTemplate/teacher-header.html :: teacher-navbar"></div>
+</div>
+<div th:if="${#httpServletRequest.isUserInRole('STUDENT')}" >
+    <div th:replace="BaseTemplate/student-header.html :: student-navbar"></div>
+</div>
+<div class="row justify-content-center p-4">
+    <div class="col-12 border border-dark p-4">
+        <img src="../static/uploads/error.png" th:src="@{uploads/error.png}" class="mx-auto d-block w-25"/>
+        <p class="text-danger display-4 text-center">
+            یه مشکلی سمت سرور پیش اومده 500!!!
+            <br>
+            <br>
+        </p>
+        <p class="display-4 text-center">
+            به سجاد بگو برات درستش بکند ;)
+        </p>
+        <br>
+        <p class="text-center alert alert-dark">
+            phone : 09056200582
+            <br>
+            e-mail : rabiee.614@gmail.com
+        </p>
+        <p class="text-center alert alert-success">
+            حالا وقتشه برگردی به
+            <a class="h3" th:href="@{'/index'}">
+                صفحه اصلی
+            </a>
+        </p>
+    </div>
+
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
