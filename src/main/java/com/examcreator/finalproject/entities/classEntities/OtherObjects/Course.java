@@ -1,5 +1,7 @@
-package com.examcreator.finalproject.entities.classEntities;
+package com.examcreator.finalproject.entities.classEntities.OtherObjects;
 
+import com.examcreator.finalproject.entities.classEntities.Users.Student;
+import com.examcreator.finalproject.entities.classEntities.Users.Teacher;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -48,11 +50,11 @@ public class Course {
         return id;
     }
 
-    public Teacher getCTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
-    public void setCTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
