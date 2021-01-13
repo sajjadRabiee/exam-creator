@@ -1,5 +1,6 @@
-package com.examcreator.finalproject.entities.classEntities;
+package com.examcreator.finalproject.entities.classEntities.OtherObjects;
 
+import com.examcreator.finalproject.entities.enumEntities.TypeOfExam;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class Exam {
     @Column
     private String title;
 
+    @Enumerated
+    private TypeOfExam typeOfExam;
+
     @Column
     private String description;
 
@@ -39,7 +43,7 @@ public class Exam {
     @JoinColumn(name = "fk_course")
     private Course course;
 
-    @OneToMany(mappedBy = "exam")
+    @ManyToMany(mappedBy = "examList")
     private List<Question> questionList = new ArrayList<>();
 
 
@@ -57,6 +61,14 @@ public class Exam {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public TypeOfExam getTypeOfExam() {
+        return typeOfExam;
+    }
+
+    public void setTypeOfExam(TypeOfExam typeOfExam) {
+        this.typeOfExam = typeOfExam;
     }
 
     public String getDescription() {
