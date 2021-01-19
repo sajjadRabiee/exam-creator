@@ -1,7 +1,7 @@
 package com.examcreator.finalproject.controller;
 
-import com.examcreator.finalproject.entities.classEntities.Role;
-import com.examcreator.finalproject.entities.classEntities.User;
+import com.examcreator.finalproject.entities.enumEntities.Role;
+import com.examcreator.finalproject.entities.classEntities.Users.User;
 import com.examcreator.finalproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,12 +28,11 @@ public class AdminController {
     }
 
 
-
     @GetMapping("/show-all-users")
-    public String showAllUsers(@PageableDefault(size = 5) Pageable pageable , Model model ,@Param("keyword") String keyword){
-        Page<User> page = userService.searchAllUser(keyword,pageable);
+    public String showAllUsers(@PageableDefault(size = 5) Pageable pageable, Model model, @Param("keyword") String keyword) {
+        Page<User> page = userService.searchAllUser(keyword, pageable);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("page",page);
+        model.addAttribute("page", page);
         return "User/Admin/show-all-users";
     }
 
