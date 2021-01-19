@@ -32,7 +32,8 @@
             <tr>
                 <form id="search-form" th:action="@{'/admin/show-all-users'}">
                     <td colspan="7" class="col">
-                        <input class="form-control" type="text" name="keyword" id="keyword" th:value="${keyword}" placeholder="جستجو"/>
+                        <input class="form-control" type="text" name="keyword" id="keyword"
+                               th:value="${keyword}" placeholder="جستجو"/>
                     </td>
                     <td colspan="3" class="col">
                         <input type="submit" class="btn-block btn btn-outline-dark" value="ارسال">
@@ -40,7 +41,7 @@
                 </form>
             </tr>
             <tbody>
-            <tr  th:each="user : ${page.content}">
+            <tr id="users-box" th:each="user : ${page.content}">
                 <td th:text="${user.name.firstName}">first name</td>
                 <td th:text="${user.name.lastName}">last name</td>
                 <td th:text="${user.username}">username</td>
@@ -77,30 +78,42 @@
             </tr>
             </tbody>
         </table>
-                <div class="pagination-div">
+        <div class="pagination-div">
             <span th:if="${page.hasPrevious()}">
                 <a th:href="@{/admin/show-all-users(page=${page.number-1},size=${page.size})}">صفحه قبل</a>
             </span>
-                    <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
-                        <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
-                        <span th:unless="${page.number == i}">
+            <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
+                <span th:if="${page.number == i}" class="selected">[[${i}+1]]</span>
+                <span th:unless="${page.number == i}">
                      <a th:href="@{/admin/show-all-users(page=${i},size=${page.size})}">[[${i}+1]]</a>
                 </span>
-                    </th:block>
-                    <span th:if="${page.hasNext()}">
+            </th:block>
+            <span th:if="${page.hasNext()}">
                 <a th:href="@{/admin/show-all-users(page=${page.number+1},size=${page.size})}">صفحه بعد</a>
             </span>
-                </div>
+        </div>
     </div>
 </div>
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
-<!--        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
-<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
-<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
-<!--        crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script>
+    // $(document).ready(function () {
+    //     // $('#keyword').on('change', function() {alert( 'hello baby');});
+    //     $('#keyword').focus(function (e) {
+    //         //var a = $(this).val();
+    //         e.preventDefault();
+    //         $(this).keypress(function (){
+    //             alert('hellooo');
+    //         })
+    //     })
+    // });
+</script>
 </body>
 </html>

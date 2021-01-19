@@ -16,11 +16,16 @@
     <div th:if="${#httpServletRequest.isUserInRole('ADMIN')}" >
         <div th:replace="BaseTemplate/admin-header.html :: admin-navbar"></div>
     </div>
-    <div th:if="${#httpServletRequest.isUserInRole('TACHER')}" >
+    <div th:if="${#httpServletRequest.isUserInRole('TEACHER')}" >
         <div th:replace="BaseTemplate/teacher-header.html :: teacher-navbar"></div>
     </div>
     <div th:if="${#httpServletRequest.isUserInRole('STUDENT')}" >
         <div th:replace="BaseTemplate/student-header.html :: student-navbar"></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <img src="../static/uploads/walpaper.jpg" th:src="@{uploads/walpaper.jpg}" class="img-fluid" alt="Responsive image">
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

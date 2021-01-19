@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+          integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <meta charset="UTF-8">
+    <title>افزودن سوال تشریحی</title>
+</head>
+<body>
+<div th:replace="BaseTemplate/teacher-header.html :: teacher-navbar"></div>
+<div class="row justify-content-center p-4">
+    <div class="col-8 p-1">
+        <div class="border border-dark rounded shadow-sm p-3">
+            <p class="h4 text-center p-1">افزودن سوال جدید</p>
+            <form id="add-question-form" name="add-question-form" th:object="${newTextQuestion}"
+                  th:action="@{/teacher/add-question/{examList-id}/text (examList-id = ${examId})}"
+                  method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <div class="form-row form-group">
+                    <label for="title" class="col-form-label">عنوان سوال : </label>
+                    <input class="col form-control" th:field="*{title}" type="text" name="title" id="title"
+                           placeholder="عنوان سوال" required>
+                    <div class="invalid-feedback">لطفا عنوان را پر کنید !</div>
+                </div>
+                <div class="form-row form-group">
+                    <label for="score" class="col-form-label">نمره سوال : </label>
+                    <input class="col form-control" th:field="*{score}" type="number" min="0" name="title" id="score"
+                           placeholder="نمره سوال">
+                </div>
+                <div class="form-row form-group">
+                    <label for="content" class="col-form-label">صورت سوال : </label>
+                    <textarea type="text" id="content" placeholder="صورت سوال" class="col form-control"
+                              th:field="*{context}" autocomplete="off"></textarea>
+                </div>
+                <div class="form-row form-group">
+                    <label for="answer" class="col-form-label">پاسخ سوال : </label>
+                    <textarea type="text" id="answer" placeholder="پاسخ سوال" class="col form-control"
+                              th:field="*{answer}" autocomplete="off"></textarea>
+                </div>
+                <div class="alert alert-success" role="alert" id="successful-msg" style="display: none">سوال به درستی
+                    افزوده
+                    شد
+                </div>
+                <div class="form-row form-group">
+                    <input type="submit" class="col btn btn-success" value="ساخت سوال">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="col-4 p-1">
+        <div class="border border-dark rounded shadow-sm p-3">
+            <p class="h4 text-center p-1">افزودن سوال از بانک سوالات</p>
+            <div>
+                <table class="table">
+                    <tr>
+                        <th scope="col">نام سوال</th>
+                        <th scope="col">افزودن</th>
+                    </tr>
+                    <tr th:each="q : ${questionsBank}">
+                        <div th:if="${q.type.equals('text')}">
+                            <td th:text="${q.title}"></td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                                        data-target="#addModal" th:attrappend="data-target=${q.id}">افزودن
+                                </button>
+                                <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true" th:attrappend="id=${q.id}">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addTitle"
+                                                    th:text="'افزودن سوال '  +  ${q.title}"></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form th:object="${bankQuestion}" th:action="@{/teacher/add-question/from-bank}" method="post">
+                                                <div class="modal-body">
+                                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+                                                    <div class="form-row">
+                                                        <label for="scoreOfBankQuestion" class="col-form-label"> امتیاز سوال برای این آزمون : </label>
+                                                        <input th:field="*{newScore}" type="number" id="scoreOfBankQuestion" class="col form-control">
+                                                        <input type="hidden" class="form-control" th:value="${q.id}" th:attr="name ='questionId'" name="questionId" id="questionId">
+                                                        <input type="hidden" class="form-control" th:value="${examId}" th:attr="name ='examId'" name="examId" id="examId">
+                                                    </div>
+                                                </div>
+                                                    <div class="modal-footer form-group">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">بستن
+                                                        </button>
+                                                        <button type="submit" class="btn btn-success">اضافه کردن</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-8 p-4">
+        <div>
+            <table id="tbl-questions" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">نام سوال</th>
+                    <th scope="col">امتیاز سوال</th>
+                    <th scope="col">ویرایش</th>
+                    <th scope="col">حذف</th>
+                </tr>
+                <tr th:each="t : ${pastQuestions}">
+                    <td th:text="${t.title}"></td>
+                    <td th:text="${t.score}"></td>
+                    <td>
+                    <td>
+                    <a th:href="@{/teacher/edit-question/{exam-id}/{q-id} (exam-id = ${examId} , q-id = ${t.id})}">
+                        <button type="button" class="btn btn-outline-primary">ویرایش</button>
+                    </a>
+                    </td>
+                    </td>
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                data-target="#removeModal" th:attrappend="data-target=${t.id}">حذف
+                        </button>
+                        <div class="modal fade" id="removeModal" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true" th:attrappend="id=${t.id}">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="removeTitle"
+                                            th:text="'حذف سوال '  +  ${t.title}"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p th:text="'آیا مطمئن هستید که می خواهید سوال -' + ${t.title} + '- را حذف کنید ؟'"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن
+                                        </button>
+                                        <a th:href="@{/teacher/delete-question/{q}/{e} (q = ${t.id} , e = ${examId})}">
+                                            <button type="button" class="btn btn-danger">حذف کردن</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $('#content').summernote({
+        placeholder: 'متن سوال',
+        height: 100
+    });
+    $('#answer').summernote({
+        placeholder: 'پاسخ سوال',
+        height: 100
+    });
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 <div th:replace="BaseTemplate/student-header.html :: student-navbar"></div>
 <div class="row justify-content-start">
     <div class="col-6 p-4">
-        <div class="p-4 border border-success">
+        <div class="p-4 border border-success shadow-sm bg-light">
         <table id="tbl-course" class="table">
             <thead>
             <tr>
@@ -21,12 +21,18 @@
                 <th scope="col">تاریخ شروع دوره</th>
                 <th scope="col">تاریخ پایان دوره</th>
                 <th scope="col">شناسه دوره</th>
+                <th scope="col">شرکت در دوره</th>
             </tr>
             <tr th:each="c : ${courses}">
                 <td th:text="${c.title}"></td>
                 <td th:text="${c.startDay}"></td>
                 <td th:text="${c.endDay}"></td>
                 <td></td>
+                <td>
+                    <a th:href="@{/student/show-exams/{id} (id = ${c.id})}">
+                        <button class="btn btn-outline-primary">شرکت در دوره</button>
+                    </a>
+                </td>
             </tr>
             </thead>
         </table>

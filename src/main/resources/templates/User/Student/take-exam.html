@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+          integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"
+            integrity="sha512-lteuRD+aUENrZPTXWFRPTBcDDxIGWe5uu0apPEn+3ZKYDwDaEErIK9rvR0QzUGmUQ55KFE2RqGTVoZsKctGMVw=="
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <meta charset="UTF-8">
+    <title>آزمون</title>
+</head>
+<body>
+<div th:replace="BaseTemplate/student-header.html :: student-navbar"></div>
+<div class="row justify-content-center p-4">
+    <div class="col-4">
+        <div class="p-2">
+            <div class="border border-dark rounded shadow-sm p-3">
+                <div class="rounded bg-primary text-white shadow text-center p-2">
+                    <p class="mb-0 font-weight-bold text-uppercase"> تا پایان آزمون </p>
+                    <div id="clock" class="countdown pt-4"></div>
+                </div>
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="border border-dark rounded shadow-sm p-3">
+                <div class="alert alert-danger">پس از فشردن کلید پایین تمام پاسخ ها ثبت می شود و بازگشت به آزمون میسر
+                    نمی باشد !
+                </div>
+                <button class="col btn btn-outline-success">ثبت همه پاسخ ها و اتمام آزمون</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="border border-dark rounded shadow-sm p-3">
+            <div class="p-4" th:each="p : ${textQuestions}">
+                <div class="border p-4">
+                    <p th:text="'عنوان سوال : ' + ${p.title}"></p>
+                    <br>
+                    <p th:utext="'صورت سوال : ' + ${p.context}"></p>
+                    <br>
+                    <form th:action="@{/student/add-answer}" th:object="${answer}" method="post">
+                        <input type="hidden" class="form-control" th:value="${p.id}" th:attr="name ='questionId'"
+                               name="questionId" id="questionId">
+                        <input type="hidden" class="form-control" th:value="${examId}" th:attr="name ='examId'"
+                               name="examId" id="examId">
+
+                        <div class="form-row form-group">
+                            <label for="content" class="col-form-label">پاسخ سوال : </label>
+                            <textarea th:field="*{answer}" th:utext="${p.studentAnswer}" type="text" id="content" placeholder="پاسخ سوال"
+                                      class="content col form-control"
+                                      autocomplete="off"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary col">ثبت پاسخ</button>
+                    </form>
+                </div>
+            </div>
+            <div class="p-4" th:each="p : ${optionalQuestions}">
+                <div class="border p-4">
+                    <p th:text="'عنوان سوال : ' + ${p.title}"></p>
+                    <br>
+                    <p th:utext="'صورت سوال : ' + ${p.context}"></p>
+                    <br>
+                    <form th:action="@{/student/add-answer}" th:object="${answer}" method="post">
+                        <input type="hidden" class="form-control" th:value="${p.id}" th:attr="name ='questionId'"
+                               name="questionId" id="questionId">
+                        <input type="hidden" class="form-control" th:value="${examId}" th:attr="name ='examId'"
+                               name="examId" id="examId">
+
+                        <div th:each="o : ${p.options}">
+                            <input th:field="*{answer}" type="radio" th:text="${o}"
+                                   th:checked="${o.equals(p.studentAnswer)}"
+                                   th:value="${o}" name="options">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary col">ثبت پاسخ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    $('.content').summernote({
+        height: 100
+    });
+    const endDate = [[${#calendars.format(endDate,'yyyy/MM/dd HH:mm')}]];
+
+    $('#clock').countdown(endDate).on('update.countdown', function (event) {
+        const $this = $(this).html(event.strftime(''
+            + ' <span class="h2 font-weight-bold">%H</span> ساعت'
+            + ' <span class="h2 font-weight-bold">%M</span> دقیقه'
+            + ' <span class="h2 font-weight-bold">%S</span> ثانیه'));
+    }).on('finish.countdown', function () {
+        location.reload();
+    });
+</script>
+</body>
+</html>
