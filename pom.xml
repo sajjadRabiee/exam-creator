@@ -8,11 +8,11 @@
         <version>2.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.exam-creator</groupId>
+    <groupId>com.examList-creator</groupId>
     <artifactId>finalproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>finalproject</name>
-    <description>Demo project of exam creator for sajjad rabiee resume</description>
+    <description>Demo project of examList creator for sajjad rabiee resume</description>
 
     <properties>
         <java.version>1.8</java.version>
