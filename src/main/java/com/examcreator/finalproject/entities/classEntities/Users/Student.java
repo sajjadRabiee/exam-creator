@@ -1,5 +1,6 @@
-package com.examcreator.finalproject.entities.classEntities;
+package com.examcreator.finalproject.entities.classEntities.Users;
 
+import com.examcreator.finalproject.entities.classEntities.OtherObjects.Course;
 import com.examcreator.finalproject.entities.enumEntities.Role;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

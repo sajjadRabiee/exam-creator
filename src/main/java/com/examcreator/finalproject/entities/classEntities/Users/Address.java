@@ -1,4 +1,4 @@
-package com.examcreator.finalproject.entities.classEntities;
+package com.examcreator.finalproject.entities.classEntities.Users;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
