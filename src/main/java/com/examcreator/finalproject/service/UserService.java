@@ -1,14 +1,12 @@
 package com.examcreator.finalproject.service;
 
 import com.examcreator.finalproject.entities.DTOEntities.UserInformationDTO;
-import com.examcreator.finalproject.entities.classEntities.Role;
-import com.examcreator.finalproject.entities.classEntities.User;
+import com.examcreator.finalproject.entities.enumEntities.Role;
+import com.examcreator.finalproject.entities.classEntities.Users.User;
 import com.examcreator.finalproject.service.base.BaseEntityService;
-import javassist.compiler.ast.Keyword;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserService extends BaseEntityService<User,Long> {

@@ -1,18 +1,17 @@
 package com.examcreator.finalproject.service;
 
 import com.examcreator.finalproject.entities.DTOEntities.UserInformationDTO;
-import com.examcreator.finalproject.entities.classEntities.*;
+import com.examcreator.finalproject.entities.classEntities.Users.*;
+import com.examcreator.finalproject.entities.enumEntities.Role;
 import com.examcreator.finalproject.repository.UserRepository;
 import com.examcreator.finalproject.security.PasswordEncoderSecurity;
 import com.examcreator.finalproject.service.base.BaseEntityServiceImpl;
-import javassist.compiler.ast.Keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -70,7 +69,7 @@ public class UserServiceImpl extends BaseEntityServiceImpl<User,Long, UserReposi
     }
 
     @Override
-    public boolean changeTheRole(Long ID,Role role) {
+    public boolean changeTheRole(Long ID, Role role) {
         Optional<User> oUserById = userRepository.findById(ID);
         User user = oUserById.get();
         user.setRole(role);
