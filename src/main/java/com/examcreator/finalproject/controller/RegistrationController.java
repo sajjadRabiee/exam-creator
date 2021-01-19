@@ -22,17 +22,17 @@ public class RegistrationController {
     }
 
     @ModelAttribute("user")
-    public UserInformationDTO userRegistrationDTO(){
+    public UserInformationDTO userRegistrationDTO() {
         return context.getBean(UserInformationDTO.class);
     }
 
     @GetMapping
-    public String showRegisterPage(Model model){
+    public String showRegisterPage(Model model) {
         return "register";
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") UserInformationDTO userDTO){
+    public String registerUserAccount(@ModelAttribute("user") UserInformationDTO userDTO) {
         boolean result = userService.registerUser(userDTO);
         return result ? "register" : "register";
     }
