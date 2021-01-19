@@ -1,9 +1,6 @@
 package com.examcreator.finalproject.service;
 
-import com.examcreator.finalproject.entities.DTOEntities.TeacherDTO;
-import com.examcreator.finalproject.entities.classEntities.Course;
-import com.examcreator.finalproject.entities.classEntities.Teacher;
-import com.examcreator.finalproject.entities.classEntities.User;
+import com.examcreator.finalproject.entities.classEntities.Users.Teacher;
 import com.examcreator.finalproject.repository.TeacherRepository;
 import com.examcreator.finalproject.service.base.BaseEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
