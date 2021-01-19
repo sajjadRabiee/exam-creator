@@ -1,6 +1,6 @@
 package com.examcreator.finalproject.service;
 
-import com.examcreator.finalproject.entities.classEntities.Admin;
+import com.examcreator.finalproject.entities.classEntities.Users.Admin;
 import com.examcreator.finalproject.repository.AdminRepository;
 import com.examcreator.finalproject.service.base.BaseEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
