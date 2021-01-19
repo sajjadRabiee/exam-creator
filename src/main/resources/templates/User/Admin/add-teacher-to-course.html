@@ -55,8 +55,8 @@
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <div class="form-group">
                     <label for="teacher">نام استاد</label>
-                    <select id="teacher" class="form-control" th:field="*{username}">
-                        <option value="">جستجو استاد</option>
+                    <select id="teacher" class="form-control custom-select" th:field="*{username}">
+                        <option value="">استاد</option>
                         <option th:each="teacherVal : ${teachers}" th:value="${teacherVal.getUsername()}"
                                 th:text="${teacherVal.getUsername()}"></option>
                     </select>
